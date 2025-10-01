@@ -13,6 +13,16 @@ async function loadPage(route) {
         const res = await fetch(pageUrl);
         const html = await res.text();
         app.innerHTML = html;
+
+        // if it's home disable scroll otherwise enable scroll
+        if(route === '/') {
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        }
+
     } catch(_) {
         app.innerHTML = '<h1>Page not found</h1>';
     }

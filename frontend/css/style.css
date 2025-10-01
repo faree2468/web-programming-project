@@ -1,4 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
 }
+
+
+/* Main CSS */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(41, 40, 40);
+    padding: 15px;
+    
+}
+
+#main-logo {
+    margin-left: 15px;
+    font-family: "Raleway", sans-serif;
+    background: none;
+    border: none;
+    font-size: 25px;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+nav .main-nav-subsection {
+    font-family: "Raleway", sans-serif;
+    padding: 10px;
+}
+
+nav .main-nav-subsection a {
+    text-decoration: none;
+    color: aliceblue;
+    margin-right: 20px;
+}
+
+
+
+
+
+/* Home CSS */
+
+#home-main {
+    height: 100vh;
+    background-color: rgb(133, 128, 128);
+}
+
+#home-main h1 {
+    padding-top: 15px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+
+
+/* Bills CSS */
+
+
+
+/* Profile CSS */
+
+
+
+/* Settings CSS */
+
