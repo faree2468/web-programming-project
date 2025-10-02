@@ -1,3 +1,5 @@
+import {addCharts} from './home.js';
+
 const app = document.getElementById('app');
 
 const routes = {
@@ -18,6 +20,7 @@ async function loadPage(route) {
         if(route === '/') {
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
+            addCharts();
         } else {
             document.documentElement.style.overflow = '';
             document.body.style.overflow = '';
