@@ -38,7 +38,33 @@ nav .main-nav-subsection a {
 }
 
 
+/* Register CSS */
+#register-main {
+    display: flex;
+    justify-content: space-around;
+}
 
+.sign-up-section {
+    width: 50%;
+    height: 100vh;
+    border: 1px solid red;
+}
+
+.picture-section {
+    width: 50%;
+    height: 100vh;
+    border: 1px solid blue;
+}
+
+.picture-section img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+/* Login CSS */
 
 
 /* Home CSS */
@@ -60,10 +86,24 @@ nav .main-nav-subsection a {
     margin: 25px 0px 40px 0px;
 }
 
+.home-chart1 {
+    display: flex;
+    justify-content: space-around;
+    height: 300px;
+    width: 550px;
+}
+
 .home-chart1 h3 {
     margin-top: 10px;
     text-align: center;
     font-family: "Raleway", sans-serif;
+}
+
+.home-chart2 {
+    display: flex;
+    justify-content: space-around;
+    height: 300px;
+    width: 550px;
 }
 
 .home-chart2 h3 {
@@ -72,17 +112,58 @@ nav .main-nav-subsection a {
     font-family: "Raleway", sans-serif;
 }
 
-
 .home-dashboard-sub2 {
-    max-width: 325px;
-    width: 90%;         
+    max-width: 1000px;       
+    width: 90%;
     margin: 2rem auto;
 }
 
-.home-dashboard-sub2 h3 {
-    margin-top: 10px;
+.home-dashboard-sub2 h1 {
     text-align: center;
+    margin-bottom: 1rem;
+}
+
+
+.home-dashboard-sub2-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+
+.chart-wrapper {
+    flex: 0 0 300px;
+    height: 300px;
+    position: relative;
+}
+
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+
+.home-dashboard-topSpends {
+    flex: 1;                
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+}
+
+.home-dashboard-topSpends .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+}
+
+.home-dashboard-topSpends .row span:first-child {
     font-family: "Raleway", sans-serif;
+    font-weight: 600;
 }
 
 
