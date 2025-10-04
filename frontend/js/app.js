@@ -1,17 +1,14 @@
 import { addCharts } from './home.js';
 import { adaptStyles } from './register.js';
+import { adaptLoginStyles } from './login.js';
 
 const app = document.getElementById('app');
 
 // Restoring styles for elements
 const navigation = document.getElementById('nav');
-const logo = document.getElementById('main-logo');
-const navigationSubsection = document.querySelector('.main-nav-subsection');
 
 // Styles
-const NAV_BACKGROUND_COLOR = navigation.style.backgroundColor;
-const LOGO_BACKGROUND_COLOR = logo.style.backgroundColor;
-const NAV_SUBSECTION_VISIBILITY = navigationSubsection.style.visibility;
+const NAV_VISIBLE = navigation.style.display;
 
 
 const routes = {
@@ -26,9 +23,7 @@ const routes = {
 // Utils
 function restoreStyles() {
 
-    navigation.style.backgroundColor = NAV_BACKGROUND_COLOR;
-    logo.style.color = LOGO_BACKGROUND_COLOR;
-    navigationSubsection.style.visibility = NAV_SUBSECTION_VISIBILITY;
+    navigation.style.display = NAV_VISIBLE;
     
 }
 
@@ -48,6 +43,15 @@ async function loadPage(route) {
         } else if(route === '/register') {
             // run register view specific scripts
             adaptStyles();
+            // disabling scroll again
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+        } else if(route === '/login') {
+            // run login view specific scripts
+            adaptLoginStyles();
+            // disabling scroll again
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
         } else {
             document.documentElement.style.overflow = '';
             document.body.style.overflow = '';

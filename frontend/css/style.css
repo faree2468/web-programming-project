@@ -47,13 +47,103 @@ nav .main-nav-subsection a {
 .sign-up-section {
     width: 50%;
     height: 100vh;
-    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
 }
+
+.sign-up-form {
+    border: 3px solid antiquewhite;
+    /* background-color: #c9c9c9; */
+    border-radius: 16px;
+    width: 500px;
+    height: 650px;
+    margin-top: 100px;
+}
+
+.sign-up-form h2 {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+#sign-up-form-form {
+    border: 1px solid #e0e7ef;
+    background-color: #fffdfa;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(34, 34, 59, 0.10);
+    padding: 32px 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-family: "Raleway", sans-serif;
+}
+
+#sign-up-form-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#sign-up-form-form label {
+    font-weight: 600;
+    color: #22223b;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+#sign-up-form-form input[type="text"],
+#sign-up-form-form input[type="email"],
+#sign-up-form-form input[type="password"] {
+    padding: 11px 13px;
+    border: 1.5px solid #e0e7ef;
+    border-radius: 7px;
+    font-size: 1em;
+    background: #f9f9fb;
+    color: #22223b;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#sign-up-form-form input[type="text"]:focus,
+#sign-up-form-form input[type="email"]:focus,
+#sign-up-form-form input[type="password"]:focus {
+    border-color: #4a90e2;
+    background: #fff;
+    outline: none;
+}
+
+#sign-up-form-form button[type="submit"] {
+    margin-top: 10px;
+    padding: 13px 0;
+    background: linear-gradient(90deg, #4a90e2 60%, #6dd5ed 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(34, 34, 59, 0.06);
+    letter-spacing: 0.5px;
+}
+
+#sign-up-form-form button[type="submit"]:hover,
+#sign-up-form-form button[type="submit"]:focus {
+    background: linear-gradient(90deg, #357ab8 60%, #4a90e2 100%);
+    box-shadow: 0 4px 16px rgba(34, 34, 59, 0.13);
+}
+
+@media (max-width: 600px) {
+    #sign-up-form-form {
+        padding: 18px 6vw 16px 6vw;
+        gap: 16px;
+    }
+}
+
 
 .picture-section {
     width: 50%;
     height: 100vh;
-    border: 1px solid blue;
 }
 
 .picture-section img {
@@ -65,6 +155,99 @@ nav .main-nav-subsection a {
 
 
 /* Login CSS */
+#login-main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    border: 3px solid antiquewhite;
+    border-radius: 16px;
+    width: 500px;
+    height: 650px;
+    margin-top: 100px;
+}
+
+.login-form h2 {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    padding: 20px;
+    font-size: 35px;
+}
+
+#login-form-form {
+    border: 1px solid #e0e7ef;
+    background-color: #fffdfa;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(34, 34, 59, 0.10);
+    padding: 32px 28px 200px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-family: "Raleway", sans-serif;
+}
+
+#login-form-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#login-form-form label {
+    font-weight: 600;
+    color: #22223b;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+#login-form-form input[type="text"],
+#login-form-form input[type="email"],
+#login-form-form input[type="password"] {
+    padding: 11px 13px;
+    border: 1.5px solid #e0e7ef;
+    border-radius: 7px;
+    font-size: 1em;
+    background: #f9f9fb;
+    color: #22223b;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#login-form-form input[type="text"]:focus,
+#login-form-form input[type="email"]:focus,
+#login-form-form input[type="password"]:focus {
+    border-color: #4a90e2;
+    background: #fff;
+    outline: none;
+}
+
+#login-form-form button[type="submit"] {
+    margin-top: 10px;
+    padding: 13px 0;
+    background: linear-gradient(90deg, #4a90e2 60%, #6dd5ed 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(34, 34, 59, 0.06);
+    letter-spacing: 0.5px;
+}
+
+#login-form-form button[type="submit"]:hover,
+#login-form-form button[type="submit"]:focus {
+    background: linear-gradient(90deg, #357ab8 60%, #4a90e2 100%);
+    box-shadow: 0 4px 16px rgba(34, 34, 59, 0.13);
+}
+
+@media (max-width: 600px) {
+    #login-form-form {
+        padding: 18px 6vw 16px 6vw;
+        gap: 16px;
+    }
+}
 
 
 /* Home CSS */
@@ -168,7 +351,108 @@ nav .main-nav-subsection a {
 
 
 /* Bills CSS */
+#bills-main {
+    background-color: rgb(133, 128, 128);
+    height: 100vh;
+    padding-top: 35px;
+}
 
+.bills-form {
+    max-width: 500px;
+    margin: 0px auto;
+    padding: 32px 24px;
+    background: #f9f9fb;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    font-family: "Raleway", sans-serif;
+}
+
+#bills-main h2 {
+    margin-top: 0;
+    color: #2d3748;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0 0 20px 0;
+    letter-spacing: 0.5px;
+}
+
+#bills-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+#bills-main label {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 4px;
+}
+
+#bills-main input[type="text"],
+#bills-main input[type="number"],
+#bills-main input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border 0.2s;
+}
+
+#bills-main input:focus {
+    border-color: #3182ce;
+    outline: none;
+}
+
+#bills-main button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 0;
+    background: #3182ce;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#bills-main button[type="submit"]:hover {
+    background: #2563eb;
+}
+
+#bills-main table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+#bills-main th, #bills-main td {
+    padding: 12px 10px;
+    text-align: left;
+}
+
+#bills-main th {
+    background: #e2e8f0;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#bills-main tr:nth-child(even) td {
+    background: #f1f5f9;
+}
+
+#bills-main .no-bills td {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    background: #f9fafb;
+}
 
 
 /* Profile CSS */
