@@ -1,6 +1,8 @@
-import { addCharts } from './home.js';
+import { addCharts, addTime } from './home.js';
 import { adaptStyles } from './register.js';
 import { adaptLoginStyles } from './login.js';
+import { adaptHeroStyles } from './hero.js';
+import { manageListeners, adaptSettingsStyles } from './settings.js';
 
 const app = document.getElementById('app');
 
@@ -11,8 +13,16 @@ const navigation = document.getElementById('nav');
 const NAV_VISIBLE = navigation.style.display;
 
 
+// Settings timezone
+document.addEventListener('timezoneChanged', (e) => {
+    localStorage.setItem('billAppTimezone', e.detail);
+});
+
+
+
 const routes = {
-    '/' : 'views/home.html',
+    '/' : 'views/hero.html',
+    '/home' : 'views/home.html',
     '/register' : 'views/register.html',
     '/login' : 'views/login.html',
     '/bills' : 'views/bills.html',
@@ -28,18 +38,24 @@ function restoreStyles() {
 }
 
 async function loadPage(route) {
-    const pageUrl = routes[route] || routes['/']; // if the route does not exist go to home
+    let pageUrl = null;
+    if(route in routes) {
+        pageUrl = routes[route];
+    } else {
+        pageUrl = routes['/'];
+    }
     try {
         const res = await fetch(pageUrl);
         const html = await res.text();
         app.innerHTML = html;
 
         // if it's home disable scroll otherwise enable scroll
-        if(route === '/') {
+        if(route === '/home') {
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
             addCharts();
             restoreStyles();
+            addTime();
         } else if(route === '/register') {
             // run register view specific scripts
             adaptStyles();
@@ -52,6 +68,14 @@ async function loadPage(route) {
             // disabling scroll again
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
+        } else if(route === '/settings') {
+            // settings related scripts
+            manageListeners();
+            adaptSettingsStyles();
+        } else if(route === '/') {
+            // hero page, remove nav
+            adaptHeroStyles();
+            
         } else {
             document.documentElement.style.overflow = '';
             document.body.style.overflow = '';

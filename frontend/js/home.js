@@ -99,4 +99,25 @@ export function addCharts() {
         }
         }
     });
+
+    
+}
+
+
+
+
+export function addTime() {
+    let timeId = document.getElementById('home-time');
+    const date = new Date();
+    const options = {
+        timeZone: localStorage.getItem('billAppTimezone') !== null ? localStorage.getItem('billAppTimezone') : 'Europe/Sarajevo',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+    };
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    timeId.textContent = formatter.format(date);
+    
 }
