@@ -70,7 +70,7 @@ export function addCharts() {
     new Chart(topSpendsCtx, {
         type: 'pie',
         data: {
-        labels: ['Electricity', 'Water'], // this data will be dynamically added, labels, data
+        labels: ['Housing', 'Utilities'], // this data will be dynamically added, labels, data
         datasets: [{
             label: 'Top spends',
             data: [1100, 900],
@@ -100,24 +100,5 @@ export function addCharts() {
         }
     });
 
-    
-}
-
-
-
-
-export function addTime() {
-    let timeId = document.getElementById('home-time');
-    const date = new Date();
-    const options = {
-        timeZone: localStorage.getItem('billAppTimezone') !== null ? localStorage.getItem('billAppTimezone') : 'Europe/Sarajevo',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-    };
-    const formatter = new Intl.DateTimeFormat('en-US', options);
-    timeId.textContent = formatter.format(date);
     
 }

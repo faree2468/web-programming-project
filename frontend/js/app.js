@@ -1,8 +1,8 @@
-import { addCharts, addTime } from './home.js';
+import { addCharts } from './home.js';
 import { adaptStyles } from './register.js';
 import { adaptLoginStyles } from './login.js';
 import { adaptHeroStyles } from './hero.js';
-import { manageListeners, adaptSettingsStyles } from './settings.js';
+import { adaptAdminStyles, handleSearch } from './admin.js';
 
 const app = document.getElementById('app');
 
@@ -27,7 +27,7 @@ const routes = {
     '/login' : 'views/login.html',
     '/bills' : 'views/bills.html',
     '/profile' : 'views/profile.html',
-    '/settings' : 'views/settings.html'
+    '/admin' : 'views/admin.html'
 }
 
 // Utils
@@ -55,7 +55,6 @@ async function loadPage(route) {
             document.body.style.overflow = 'hidden';
             addCharts();
             restoreStyles();
-            addTime();
         } else if(route === '/register') {
             // run register view specific scripts
             adaptStyles();
@@ -68,10 +67,11 @@ async function loadPage(route) {
             // disabling scroll again
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
-        } else if(route === '/settings') {
-            // settings related scripts
-            manageListeners();
-            adaptSettingsStyles();
+        } else if(route === '/admin') {
+            // run admin view scripts
+            adaptAdminStyles();
+            handleSearch();
+            
         } else if(route === '/') {
             // hero page, remove nav
             adaptHeroStyles();
