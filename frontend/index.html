@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill tracker</title>
+    <link rel="stylesheet" href="css/spapp.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav id="nav">
+        <a href="#home-main" id="main-logo">Bill.tracker</a>
+        <div class="main-nav-subsection">
+            <a href="#home-main">Home</a>
+            <a href="#bills-main">Bills</a>
+            <a href="#profile-main">Profile</a>
+            <a href="#login-main">Logout</a>
+        </div>
+    </nav>
+    <main id="spapp" class="pageContent" role="main">
+        <section id="home-main" data-load="home.html">
+        </section>
+        <section id="bills-main" data-load="bills.html">
+        </section>
+        <section id="profile-main" data-load="profile.html">
+        </section>
+        <section id="login-main" data-load="login.html">
+        </section>
+        <section id="register-main" data-load="register.html">
+        </section>
+        <section id="admin-main" data-load="admin.html">
+        </section>
+        <section id="hero-main" data-load="hero.html">
+        </section>
+    </main>
+    <script src="./js/jQuery-3.7.1.min.js"></script>
+    <script src="./js/jQuery.spapp.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

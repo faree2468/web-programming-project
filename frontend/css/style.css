@@ -1,0 +1,687 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Main CSS */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(41, 40, 40);
+    padding: 15px;
+    
+}
+
+#main-logo {
+    margin-left: 15px;
+    font-family: "Raleway", sans-serif;
+    background: none;
+    border: none;
+    font-size: 25px;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+nav .main-nav-subsection {
+    font-family: "Raleway", sans-serif;
+    padding: 10px;
+}
+
+nav .main-nav-subsection a {
+    text-decoration: none;
+    color: aliceblue;
+    margin-right: 20px;
+}
+
+
+/* Register CSS */
+#register-main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sign-up-section {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.sign-up-form {
+    border: 3px solid antiquewhite;
+    /* background-color: #c9c9c9; */
+    border-radius: 16px;
+    width: 500px;
+    height: 650px;
+    margin-top: 100px;
+}
+
+.sign-up-form h2 {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+#sign-up-form-form {
+    border: 1px solid #e0e7ef;
+    background-color: #fffdfa;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(34, 34, 59, 0.10);
+    padding: 32px 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-family: "Raleway", sans-serif;
+}
+
+#sign-up-form-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#sign-up-form-form label {
+    font-weight: 600;
+    color: #22223b;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+#sign-up-form-form input[type="text"],
+#sign-up-form-form input[type="email"],
+#sign-up-form-form input[type="password"] {
+    padding: 11px 13px;
+    border: 1.5px solid #e0e7ef;
+    border-radius: 7px;
+    font-size: 1em;
+    background: #f9f9fb;
+    color: #22223b;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#sign-up-form-form input[type="text"]:focus,
+#sign-up-form-form input[type="email"]:focus,
+#sign-up-form-form input[type="password"]:focus {
+    border-color: #4a90e2;
+    background: #fff;
+    outline: none;
+}
+
+#sign-up-form-form button[type="submit"] {
+    margin-top: 10px;
+    padding: 13px 0;
+    background: linear-gradient(90deg, #4a90e2 60%, #6dd5ed 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(34, 34, 59, 0.06);
+    letter-spacing: 0.5px;
+}
+
+#sign-up-form-form button[type="submit"]:hover,
+#sign-up-form-form button[type="submit"]:focus {
+    background: linear-gradient(90deg, #357ab8 60%, #4a90e2 100%);
+    box-shadow: 0 4px 16px rgba(34, 34, 59, 0.13);
+}
+
+@media (max-width: 600px) {
+    #sign-up-form-form {
+        padding: 18px 6vw 16px 6vw;
+        gap: 16px;
+    }
+}
+
+
+.picture-section {
+    width: 50%;
+    height: 100vh;
+}
+
+.picture-section img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+/* Login CSS */
+#login-main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    border: 3px solid antiquewhite;
+    border-radius: 16px;
+    width: 500px;
+    height: 650px;
+    margin-top: 100px;
+}
+
+.login-form h2 {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    padding: 20px;
+    font-size: 35px;
+}
+
+#login-form-form {
+    border: 1px solid #e0e7ef;
+    background-color: #fffdfa;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(34, 34, 59, 0.10);
+    padding: 32px 28px 200px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-family: "Raleway", sans-serif;
+}
+
+#login-form-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#login-form-form label {
+    font-weight: 600;
+    color: #22223b;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+#login-form-form input[type="text"],
+#login-form-form input[type="email"],
+#login-form-form input[type="password"] {
+    padding: 11px 13px;
+    border: 1.5px solid #e0e7ef;
+    border-radius: 7px;
+    font-size: 1em;
+    background: #f9f9fb;
+    color: #22223b;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#login-form-form input[type="text"]:focus,
+#login-form-form input[type="email"]:focus,
+#login-form-form input[type="password"]:focus {
+    border-color: #4a90e2;
+    background: #fff;
+    outline: none;
+}
+
+#login-form-form button[type="submit"] {
+    margin-top: 10px;
+    padding: 13px 0;
+    background: linear-gradient(90deg, #4a90e2 60%, #6dd5ed 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(34, 34, 59, 0.06);
+    letter-spacing: 0.5px;
+}
+
+#login-form-form button[type="submit"]:hover,
+#login-form-form button[type="submit"]:focus {
+    background: linear-gradient(90deg, #357ab8 60%, #4a90e2 100%);
+    box-shadow: 0 4px 16px rgba(34, 34, 59, 0.13);
+}
+
+@media (max-width: 600px) {
+    #login-form-form {
+        padding: 18px 6vw 16px 6vw;
+        gap: 16px;
+    }
+}
+
+
+/* Home CSS */
+
+#home-main {
+    height: 100vh;
+    background-color: rgb(133, 128, 128);
+}
+
+#home-main h1 {
+    padding-top: 15px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+.home-dashboard-sub1 {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0px 40px 0px;
+}
+
+.home-chart1 {
+    display: flex;
+    justify-content: space-around;
+    height: 300px;
+    width: 550px;
+}
+
+.home-chart1 h3 {
+    margin-top: 10px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+.home-chart2 {
+    display: flex;
+    justify-content: space-around;
+    height: 300px;
+    width: 550px;
+}
+
+.home-chart2 h3 {
+    margin-top: 10px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+.home-dashboard-sub2 {
+    max-width: 1000px;       
+    width: 90%;
+    margin: 2rem auto;
+}
+
+.home-dashboard-sub2 h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+
+.home-dashboard-sub2-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+
+.chart-wrapper {
+    flex: 0 0 300px;
+    height: 300px;
+    position: relative;
+}
+
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+
+.home-dashboard-topSpends {
+    flex: 1;                
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+}
+
+.home-dashboard-topSpends .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+}
+
+.home-dashboard-topSpends .row span:first-child {
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+}
+
+
+/* Bills CSS */
+#bills-main {
+    background-color: rgb(133, 128, 128);
+    height: 100vh;
+    padding-top: 35px;
+}
+
+.bills-form {
+    max-width: 500px;
+    margin: 0px auto;
+    padding: 32px 24px;
+    background: #f9f9fb;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    font-family: "Raleway", sans-serif;
+}
+
+#bills-main h2 {
+    margin-top: 0;
+    color: #2d3748;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0 0 20px 0;
+    letter-spacing: 0.5px;
+}
+
+#bills-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+#bills-main label {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 4px;
+}
+
+#bills-main #ctg {
+    padding: 8px 10px;
+    font-size: 16px;
+}
+
+#bills-main input[type="text"],
+#bills-main input[type="number"],
+#bills-main input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border 0.2s;
+}
+
+#bills-main input:focus {
+    border-color: #3182ce;
+    outline: none;
+}
+
+#bills-main button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 0;
+    background: #3182ce;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#bills-main button[type="submit"]:hover {
+    background: #2563eb;
+}
+
+#bills-main table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+#bills-main th, #bills-main td {
+    padding: 12px 10px;
+    text-align: left;
+}
+
+#bills-main th {
+    background: #e2e8f0;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#bills-main tr:nth-child(even) td {
+    background: #f1f5f9;
+}
+
+#bills-main .no-bills td {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    background: #f9fafb;
+}
+
+
+/* Profile CSS */
+#profile-main {
+    height: 100vh;
+    font-family: "Raleway", sans-serif;
+    background: rgb(133, 128, 128);
+}
+
+#profile-main h1 {
+    text-align: center;
+    padding: 15px;
+}
+
+#profile-main form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #f9f9fb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+#profile-main .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-main label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+#profile-main input[type="text"],
+#profile-main input[type="email"],
+#profile-main input[type="password"] {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    background: #fafbfc;
+}
+
+#profile-main input[type="text"]:focus,
+#profile-main input[type="email"]:focus,
+#profile-main input[type="password"]:focus {
+    border-color: #0078d4;
+    outline: none;
+    background: #fff;
+}
+
+#profile-main button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+#profile-main button[type="submit"]:hover {
+    background: #005fa3;
+}
+
+
+/* Admin CSS */
+
+#admin-main h1 {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    margin-top: 25px;
+}
+#admin-main .dashboard-cards {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+#admin-main .card {
+    background: #f5f5f5;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+#admin-main .card h3 {
+    font-family: "Raleway", sans-serif;
+    margin-top: 0;
+}
+
+#admin-main .card p {
+    font-family: "Raleway", sans-serif;
+}
+#admin-main .user-actions {
+    font-family: "Raleway", sans-serif;
+    margin-top: 2rem;
+    background: #fff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    max-width: 400px;
+    display: block;
+    margin: 10px auto; 
+
+}
+#admin-main .user-actions form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#admin-main #user-search-form {
+    font-family: "Raleway", sans-serif;
+}
+
+#admin-main .user-actions button {
+    background: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+#admin-main .user-actions button:last-child {
+    background: #0275d8;
+    margin-right: 0;
+}
+        
+
+
+/* Hero CSS */
+.hero-pros-section {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 48px 0 0 0;
+    flex-wrap: wrap;
+}
+.hero-pro {
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 28px 22px;
+    width: 260px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+    color: #fff;
+}
+.hero-pro img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+}
+.hero-pro h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.hero-pro p {
+    font-size: 1rem;
+    margin: 0;
+}
+@media (max-width: 900px) {
+    .hero-pros-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    .hero-pro {
+        width: 90%;
+    }
+}
+
+
+#hero-main {
+    background: linear-gradient(120deg, #343435 0%, #58585a 100%);
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    height: 100vh;
+    font-family: "Raleway", sans-serif;
+}
+.hero-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 28px;
+}
+.hero-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    font-size: 1.1rem;
+}
+.hero-features li {
+    margin: 10px 0;
+}
+.hero-cta {
+    display: inline-block;
+    background: #fff;
+    color: #4e54c8;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.hero-cta:hover {
+    background: #4e54c8;
+    color: #fff;
+}

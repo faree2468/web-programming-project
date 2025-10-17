@@ -1,0 +1,26 @@
+<div id="admin-main">
+    <h1>Admin Dashboard</h1>
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>Users Online</h3>
+            <p id="users-online">0</p>
+        </div>
+        <div class="card">
+            <h3>Total Users</h3>
+            <p id="user-count">0</p>
+        </div>
+    </div>
+
+    <div class="user-actions">
+        <h3>User Management</h3>
+        <form id="user-search-form">
+            <input type="text" id="search-username" placeholder="Enter username" required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="user-result" style="display:none;">
+            <p><strong>Username:</strong> <span id="result-username"></span></p>
+            <button id="delete-account-btn">Delete Account</button>
+            <button id="remove-bills-btn">Remove Bills</button>
+        </div>
+    </div>
+</div>
