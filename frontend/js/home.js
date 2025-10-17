@@ -3,6 +3,10 @@ export function addCharts() {
     const expenseCtx = document.getElementById('expenseIncomeChart');
     const topSpendsCtx = document.getElementById('topSpendsChart');
 
+    if (Chart.getChart(billsCtx)) Chart.getChart(billsCtx).destroy();
+    if (Chart.getChart(expenseCtx)) Chart.getChart(expenseCtx).destroy();
+    if (Chart.getChart(topSpendsCtx)) Chart.getChart(topSpendsCtx).destroy();
+    
     new Chart(billsCtx, {
         type: 'doughnut',
         data: {
