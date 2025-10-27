@@ -31,6 +31,8 @@ echo 'Updating user';
 echo '<br/>';
 echo '<br/>';
 print_r($user_dao->get_all());
+echo'<br/>';
+print_r($user_dao->get_by_id(2));
 
 echo '<br/>';
 echo '<br/>';
