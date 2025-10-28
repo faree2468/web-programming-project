@@ -9,5 +9,11 @@ class UserDao extends BaseDao {
         parent::__construct($this->table_name);
     }
 
-    
+    public function get_by_email($email) {
+        return $this->query_unique('SELECT * FROM ' . $this->table_name . ' WHERE email=:email', ['email' => $email]);
+    }
+
+    public function delete_user($id) {
+        $this->delete($id);
+    }
 }
