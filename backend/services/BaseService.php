@@ -31,6 +31,7 @@ class BaseService
 
     public function delete($id)
     {
-        return $this->dao->delete($id);
+        $this->dao->delete($id);
+        return true;
     }
 }

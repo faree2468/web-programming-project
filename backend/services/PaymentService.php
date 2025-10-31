@@ -19,7 +19,8 @@ class PaymentService extends BaseService
         $existing = $this->get_by_id($id);
 
         if ($existing) {
-            return $this->dao->delete_paid_bill($id);
+            $this->dao->delete_paid_bill($id);
+            return true;
         }
 
         return null;
