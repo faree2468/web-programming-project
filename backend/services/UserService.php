@@ -25,9 +25,14 @@ class UserService extends BaseService
         $existing = $this->get_by_id($id);
 
         if ($existing) {
-            return $this->dao->delete_user($id);
+            $this->dao->delete_user($id);
+            return true;
         }
 
         return null;
+    }
+
+    public function get_all_users() {
+        return $this->get_all();
     }
 }

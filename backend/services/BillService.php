@@ -19,7 +19,8 @@ class BillService extends BaseService
         $existing = $this->get_by_id($id);
 
         if ($existing) {
-            return $this->dao->edit_bill($entity, $id);
+            $this->dao->edit_bill($entity, $id);
+            return true;
         }
 
         return null;
@@ -30,7 +31,8 @@ class BillService extends BaseService
         $existing = $this->get_by_id($id);
 
         if ($existing) {
-            return $this->dao->delete_bill($id);
+            $this->dao->delete_bill($id);
+            return true;
         }
 
         return null;
