@@ -263,6 +263,64 @@ nav .main-nav-subsection a {
     font-family: "Raleway", sans-serif;
 }
 
+.home-date-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0 25px 0;
+    font-family: "Raleway", sans-serif;
+}
+
+.home-date-selector label {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 1rem;
+}
+
+.home-date-selector select {
+    padding: 8px 12px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: "Raleway", sans-serif;
+    background-color: #fff;
+    color: #2d3748;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-width: 140px;
+}
+
+.home-date-selector select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.home-date-selector select:hover {
+    border-color: #a0aec0;
+}
+
+.home-date-confirm-btn {
+    padding: 8px 20px;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+}
+
+.home-date-confirm-btn:hover {
+    background: #357ab8;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
 .home-dashboard-sub1 {
     display: flex;
     justify-content: space-around;
@@ -350,6 +408,173 @@ nav .main-nav-subsection a {
 }
 
 
+@media (max-width: 768px) {
+    #home-main {
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 20px;
+    }
+
+    #home-main h1 {
+        padding-top: 10px;
+        font-size: 1.5rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .home-date-selector {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 10px 20px 10px;
+        justify-content: center;
+    }
+
+    .home-date-selector label {
+        font-size: 0.95rem;
+    }
+
+    .home-date-selector select {
+        padding: 7px 10px;
+        font-size: 0.95rem;
+        min-width: 120px;
+    }
+
+    .home-date-confirm-btn {
+        padding: 7px 16px;
+        font-size: 0.95rem;
+    }
+
+    .home-dashboard-sub1 {
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 10px 20px 10px;
+        gap: 20px;
+    }
+
+    .home-chart1,
+    .home-chart2 {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 280px;
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .home-chart1 h1,
+    .home-chart2 h1 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .home-chart1 canvas,
+    .home-chart2 canvas {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 200px;
+    }
+
+    .home-chart1 h3,
+    .home-chart2 h3 {
+        font-size: 0.95rem;
+        margin-top: 8px;
+    }
+
+    .home-dashboard-sub2 {
+        width: 95%;
+        margin: 1.5rem auto;
+    }
+
+    .home-dashboard-sub2 h1 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .home-dashboard-sub2-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .chart-wrapper {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 100%;
+        height: 250px;
+    }
+
+    .home-dashboard-topSpends {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .home-dashboard-topSpends .row {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #home-main h1 {
+        font-size: 1.2rem;
+    }
+
+    .home-date-selector {
+        gap: 8px;
+        margin: 12px 10px 15px 10px;
+    }
+
+    .home-date-selector label {
+        font-size: 0.9rem;
+    }
+
+    .home-date-selector select {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+        min-width: 110px;
+    }
+
+    .home-date-confirm-btn {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+    }
+
+    .home-chart1,
+    .home-chart2 {
+        min-height: 250px;
+    }
+
+    .home-chart1 h1,
+    .home-chart2 h1 {
+        font-size: 1.1rem;
+    }
+
+    .home-chart1 canvas,
+    .home-chart2 canvas {
+        max-height: 180px;
+    }
+
+    .home-chart1 h3,
+    .home-chart2 h3 {
+        font-size: 0.85rem;
+    }
+
+    .home-dashboard-sub2 h1 {
+        font-size: 1.1rem;
+    }
+
+    .chart-wrapper {
+        height: 220px;
+    }
+
+    .home-dashboard-topSpends .row {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+
 /* Bills CSS */
 #bills-main {
     background-color: rgb(133, 128, 128);
@@ -429,11 +654,39 @@ nav .main-nav-subsection a {
 
 #bills-main table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     background: #fff;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: block;
+    max-height: calc(5 * 44px + 44px);
+    overflow-y: auto;
+}
+
+#bills-main table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#bills-main table thead tr {
+    background: #e2e8f0;
+}
+
+#bills-main table tbody {
+    display: block;
+    max-height: calc(5 * 44px);
+    overflow-y: auto;
+}
+
+#bills-main table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 #bills-main th, #bills-main td {
@@ -496,7 +749,8 @@ nav .main-nav-subsection a {
 
 #profile-main input[type="text"],
 #profile-main input[type="email"],
-#profile-main input[type="password"] {
+#profile-main input[type="password"],
+#profile-main input[type="number"] {
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -507,7 +761,8 @@ nav .main-nav-subsection a {
 
 #profile-main input[type="text"]:focus,
 #profile-main input[type="email"]:focus,
-#profile-main input[type="password"]:focus {
+#profile-main input[type="password"]:focus,
+#profile-main input[type="number"]:focus {
     border-color: #0078d4;
     outline: none;
     background: #fff;
