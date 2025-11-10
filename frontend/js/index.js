@@ -3,6 +3,7 @@ import { adaptStyles } from './register.js';
 import { adaptLoginStyles } from './login.js';
 import { adaptHeroStyles } from './hero.js';
 import { adaptAdminStyles, handleSearch } from './admin.js';
+import { handleBills } from './bills.js';
 
 // Restoring styles for elements
 const navigation = document.getElementById('nav');
@@ -47,6 +48,7 @@ app.route({
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         restoreStyles();
+        handleBills();
     }
 });
 
