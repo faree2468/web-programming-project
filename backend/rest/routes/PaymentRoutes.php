@@ -10,6 +10,7 @@
  */
 
 Flight::route('GET /payments', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $payments = Flight::payment_service()->get_all();
     Flight::json($payments);
 });
@@ -40,6 +41,7 @@ Flight::route('GET /payments', function() {
 
 
 Flight::route('GET /payments/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $payment = Flight::payment_service()->get_by_id($id);
 
     if ($payment) {
@@ -61,6 +63,7 @@ Flight::route('GET /payments/@id', function($id) {
  */
 
 Flight::route('GET /payments/user/@user_id', function($user_id) {
+    Flight::auth_middleware()->allowAdminOrSelf($user_id);
     $payments = Flight::payment_service()->get_paid_bills_for_user($user_id);
     Flight::json($payments);
 });
@@ -79,6 +82,7 @@ Flight::route('GET /payments/user/@user_id', function($user_id) {
  */
 
 Flight::route('GET /payments/@year/@month/@user_id', function($year, $month, $user_id) {
+    Flight::auth_middleware()->allowAdminOrSelf($user_id);
     $payments = Flight::payment_service()->get_paid_bills_for_month_year($month, $year, $user_id);
     Flight::json($payments);
 });
@@ -106,6 +110,8 @@ Flight::route('GET /payments/@year/@month/@user_id', function($year, $month, $us
 
 Flight::route('POST /payments', function() {
     $data = Flight::request()->data->getData();
+
+    $data['payment_date'] = date("Y-m-d");
 
     $result = Flight::payment_service()->add($data);
     Flight::json($result);

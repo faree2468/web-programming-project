@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @OA\Get(
  *      path="/users",
@@ -13,6 +12,7 @@
  */
 
 Flight::route("GET /users", function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     Flight::json(Flight::user_service()->get_all_users());
 });
 
@@ -40,6 +40,8 @@ Flight::route("GET /users", function() {
  * )
  */
 Flight::route('GET /users/@id', function($id) {
+    Flight::auth_middleware()->allowAdminOrSelf($id);
+
     $user = Flight::user_service()->get_by_id($id);
 
     if ($user) {
@@ -71,6 +73,7 @@ Flight::route('GET /users/@id', function($id) {
  */
 
 Flight::route("POST /users", function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::user_service()->add($data));
 });
@@ -101,6 +104,9 @@ Flight::route("POST /users", function() {
  */
 
 Flight::route('PUT /users/@id', function($id) {
+
+    Flight::auth_middleware()->allowAdminOrSelf($id);
+
     $data = Flight::request()->data->getData();
 
     $result = Flight::user_service()->update($data, $id);
@@ -133,6 +139,7 @@ Flight::route('PUT /users/@id', function($id) {
  */
 
 Flight::route("DELETE /users/@id", function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $result = Flight::user_service()->delete($id);
     Flight::json(['success' => $result !== null]);
 });
