@@ -1,4 +1,13 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Methods: POST, DELETE, OPTIONS");
+
+if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    return 0;
+}
+
 require '../vendor/autoload.php';
 require_once '../rest/services/UserService.php';
 require_once '../rest/services/BillService.php';

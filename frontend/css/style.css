@@ -242,6 +242,10 @@ nav .main-nav-subsection a {
     box-shadow: 0 4px 16px rgba(34, 34, 59, 0.13);
 }
 
+#logout-btn {
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     #login-form-form {
         padding: 18px 6vw 16px 6vw;

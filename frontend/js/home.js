@@ -106,3 +106,15 @@ export function addCharts() {
 
     
 }
+
+export function personalize() {
+    const nameTitle = document.getElementById("welcome-tag");
+    var token = localStorage.getItem('user_token');
+
+    if(token && token !== undefined) {
+        let parsedToken = Utils.parseJwt(token);
+        let addToString = nameTitle.textContent.slice(0, 9);
+        addToString += parsedToken.user["name"];
+        nameTitle.textContent = addToString;
+    }
+}

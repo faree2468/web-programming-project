@@ -1,9 +1,9 @@
-import { addCharts } from './home.js';
-import { adaptStyles } from './register.js';
-import { adaptLoginStyles } from './login.js';
+import { addCharts, personalize } from './home.js';
+import { adaptStyles, register } from './register.js';
+import { adaptLoginStyles, logoutFunc } from './login.js';
 import { adaptHeroStyles } from './hero.js';
 import { adaptAdminStyles, handleSearch } from './admin.js';
-import { handleBills } from './bills.js';
+import { handleBills, loadBills } from './bills.js';
 
 // Restoring styles for elements
 const navigation = document.getElementById('nav');
@@ -37,6 +37,8 @@ app.route({
         document.body.style.overflow = '';
         addCharts();
         restoreStyles();
+        personalize();
+        logoutFunc();
         
     }
 });
@@ -48,6 +50,7 @@ app.route({
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         restoreStyles();
+        loadBills();
         handleBills();
     }
 });
@@ -67,6 +70,7 @@ app.route({
     onReady: function() {
         // run login view specific scripts
         adaptLoginStyles();
+        UserService.init();
         // disabling scroll again
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
@@ -78,6 +82,7 @@ app.route({
     onReady: function() {
         //run register view specific scripts
         adaptStyles();
+        register();
         // disabling scroll again
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';

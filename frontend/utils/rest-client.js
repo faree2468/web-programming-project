@@ -5,7 +5,7 @@ let RestClient = {
         type: "GET",
         beforeSend: function (xhr) {
           xhr.setRequestHeader(
-            "Authentication",
+            "Authorization",
             localStorage.getItem("user_token")
           );
         },
@@ -23,7 +23,7 @@ let RestClient = {
         type: method,
         beforeSend: function (xhr) {
           xhr.setRequestHeader(
-            "Authentication",
+            "Authorization",
             localStorage.getItem("user_token")
           );
         },

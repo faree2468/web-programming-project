@@ -2,15 +2,45 @@ var UserService = {
   init: function () {
     var token = localStorage.getItem("user_token");
     if (token && token !== undefined) {
-      window.location.replace("index.html");
+      window.location.hash = "home-main";
     }
-    $("#login-form").validate({
+    $("#login-form-form").validate({
       submitHandler: function (form) {
         var entity = Object.fromEntries(new FormData(form).entries());
         UserService.login(entity);
       },
     });
   },
+
+  register: function() {
+    const entity = {
+      name: $("#name").val(),
+      email: $("#email").val(),
+      password: $("#password").val()
+    }
+
+    const confirm = $("#confirm-password").val();
+
+    if(entity.password !== confirm) {
+      toastr.error("Passwords do not match");
+      return;
+    }
+    $.ajax({
+      url: Constants.PROJECT_BASE_URL + "auth/register",
+      type: "POST",
+      data: JSON.stringify(entity),
+      contentType: "application/json",
+      dataType: "json",
+      success: function(result) {
+        console.log(result);
+        window.location.hash = "login-main";
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        toastr.error(XMLHttpRequest?.responseText ?  XMLHttpRequest.responseText : 'Error');
+      },
+    })
+  },
+
   login: function (entity) {
     $.ajax({
       url: Constants.PROJECT_BASE_URL + "auth/login",
@@ -21,7 +51,7 @@ var UserService = {
       success: function (result) {
         console.log(result);
         localStorage.setItem("user_token", result.data.token);
-        window.location.replace("index.html");
+        window.location.hash = "home-main";
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         toastr.error(XMLHttpRequest?.responseText ?  XMLHttpRequest.responseText : 'Error');
@@ -31,7 +61,7 @@ var UserService = {
 
   logout: function () {
     localStorage.clear();
-    window.location.replace("login.html");
+    window.location.hash = "login-main";
   },
 
   
