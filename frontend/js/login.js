@@ -11,3 +11,12 @@ export function logoutFunc() {
         UserService.logout();
     })
 }
+
+export function checkSession() {
+    var token = localStorage.getItem('user_token');
+
+    if(!token && token == undefined) {
+        window.location.hash = "login-main";
+    }
+
+}

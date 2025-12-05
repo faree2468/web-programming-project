@@ -587,7 +587,7 @@ nav .main-nav-subsection a {
 }
 
 .bills-form {
-    max-width: 500px;
+    max-width: 700px;
     margin: 0px auto;
     padding: 32px 24px;
     background: #f9f9fb;
@@ -714,6 +714,14 @@ nav .main-nav-subsection a {
     color: #a0aec0;
     font-style: italic;
     background: #f9fafb;
+}
+
+.payBtn i {
+    color: green;
+}
+
+.deleteBtn i {
+    color: red;
 }
 
 

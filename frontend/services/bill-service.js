@@ -7,6 +7,14 @@ var BillService = {
         })
     },
 
+    deleteBill: function(id) {
+        RestClient.delete("bills/" + id, function(_){
+            toastr.success("Bill deleted");
+        }, function(response) {
+            toastr.error(response)
+        })
+    },
+
     getBillsFromUser: function(id) {
         return new Promise((resolve, reject)=>{
             RestClient.get(
@@ -16,5 +24,11 @@ var BillService = {
             );
         });
         
+    },
+
+    editBillStatus: function(id, billStatus) {
+        RestClient.patch('bills/' + id, billStatus, function(_) {}, function(response){
+            console.error(response);
+        })
     }
 }

@@ -3,7 +3,6 @@ export async function loadBills() {
     const billForm = document.getElementById('billForm');
     const billName = document.getElementById('billName');
     const billCtg = document.getElementById('ctg');
-    const amount = document.getElementById('amount');
     const dueDate = document.getElementById('dueDate');
     const billsTable = document.getElementById('billsTable');
     const billsBody = document.getElementById('billsBody');
@@ -14,7 +13,7 @@ export async function loadBills() {
         3 : 'food',
         4 : 'utilities',
         5 : 'clothing',
-        6 : 'medicalhealthcare'
+        6 : 'medical/healthcare'
     }
 
     try {
@@ -29,18 +28,24 @@ export async function loadBills() {
 
         for (let bill of bills) {
             const billData = {
+                id: bill.id,
                 name: bill.name,
                 category_id: categoryIds[bill.category_id],
-                amount: 100,
                 due_date: bill.due_date,
+                bstatus: bill.status
             };
 
             billsBody.innerHTML += `
                 <tr>
+                    <td>${billData.id}</td>
                     <td>${billData.name}</td>
                     <td>${billData.category_id}</td>
-                    <td>${billData.amount}</td>
                     <td>${billData.due_date}</td>
+                    ${billData.bstatus ? `<td style="color:green;">Paid</td>` : `<td style="color:red;">Unpaid</td>`}
+                    <td>
+                        <button class="payBtn"><i class="fa-solid fa-dollar-sign"></i></button>
+                        <button class="deleteBtn"><i class="fa-solid fa-trash"></i></button>
+                    </td>
                 </tr>
             `;
         }
@@ -55,7 +60,6 @@ export function handleBills() {
     const billForm = document.getElementById('billForm');
     const billName = document.getElementById('billName');
     const billCtg = document.getElementById('ctg');
-    const amount = document.getElementById('amount');
     const dueDate = document.getElementById('dueDate');
     const billsTable = document.getElementById('billsTable');
     const billsBody = document.getElementById('billsBody');
@@ -66,7 +70,7 @@ export function handleBills() {
         'food' : 3,
         'utilities' : 4,
         'clothing' : 5,
-        'medicalhealthcare' : 6
+        'medical/healthcare' : 6
     }
 
     
@@ -75,28 +79,118 @@ export function handleBills() {
     billForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const billData = {
+            id: 0,
             name: billName.value,
             category_id: categoryIds[billCtg.value],
-            amount: amount.value,
             due_date: dueDate.value
         };
-        // if(billsBody.children[0].className == "no-bills")
-        //     billsTable.deleteRow(1);
             
         billsBody.innerHTML += `
             <tr>
+                <td>${billData.id}</td>
                 <td>${billData.name}</td>
                 <td>${billData.category_id}</td>
-                <td>${billData.amount}</td>
                 <td>${billData.due_date}</td>
+                <td style="color: red">0</td>
+                <td>
+                    <button class="payBtn"><i class="fa-solid fa-dollar-sign"></i></button>
+                    <button class="deleteBtn"><i class="fa-solid fa-trash"></i></button>
+                </td>
             </tr>
         `;
-        delete billData.amount;
         billData.status = 0;
-        console.log(billData);
         BillService.createBill(billData);
     });
 
 
+}
+
+// Load all categories
+
+export async function loadCategories() {
+
+    const ctg = document.getElementById('ctg');
+    ctg.innerHTML = ``;
+
+    try {
+        const ctgs = await CategoryService.showCategories();
+        
+        for(let x of ctgs) {
+            ctg.innerHTML += `
+                <option value=${x.name.toLowerCase()}>${x.name}</option>
+            `;
+            
+        }
+
+    } catch(e) {
+        console.error(err);
+    }
+}
+
+export function deleteBills() {
+    const deleteButtons = document.querySelectorAll('#billsBody .deleteBtn');
+
+    deleteButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const row = e.target.closest('tr');
+            const id = row.querySelector('td').textContent.trim();
+            
+            BillService.deleteBill(id);
+
+
+        });
+    });
+}
+
+export function payBills() {
+    const payButtons = document.querySelectorAll('#billsBody .payBtn');
+
+    payButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const row = e.target.closest('tr');
+            const id = row.querySelector('td').textContent.trim();
+            
+            
+            const amount = prompt("Enter amount paid:");
+            if (!amount || isNaN(amount) || amount <= 0) {
+                toastr.error("Please enter a valid amount");
+                return;
+            }
+
+            const methodChoice = prompt(
+                "Choose payment method:\n1 = Cash\n2 = Card\n3 = Bank Transfer"
+            );
+
+            let method;
+            if (methodChoice === "1") method = "cash";
+            else if (methodChoice === "2") method = "card";
+            else if (methodChoice === "3") method = "bank";
+            else {
+                toastr.error("Please enter a valid payment method");
+                return;
+            }
+
+            let paymentMap = {
+                "card" : 1,
+                "cash": 3,
+                "bank" : 7
+
+            }
+
+            const payment = {
+                amount: amount,
+                bill_id: id,
+                payment_method_id: paymentMap[method]
+            }
+
+            PaymentService.createPayment(payment);
+            BillService.editBillStatus(payment.bill_id, {"status" : 1});
+
+        });
+    });
 }
 

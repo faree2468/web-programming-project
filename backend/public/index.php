@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Methods: POST, DELETE, PATCH, PUT, OPTIONS");
 
 if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     return 0;

@@ -1,9 +1,9 @@
 import { addCharts, personalize } from './home.js';
 import { adaptStyles, register } from './register.js';
-import { adaptLoginStyles, logoutFunc } from './login.js';
+import { adaptLoginStyles, logoutFunc, checkSession } from './login.js';
 import { adaptHeroStyles } from './hero.js';
 import { adaptAdminStyles, handleSearch } from './admin.js';
-import { handleBills, loadBills } from './bills.js';
+import { payBills, deleteBills, handleBills, loadBills, loadCategories } from './bills.js';
 
 // Restoring styles for elements
 const navigation = document.getElementById('nav');
@@ -32,6 +32,7 @@ app.run();
 app.route({
     view: "home-main",
     onReady: function() {
+        checkSession();
         scrollAutomatic();
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
@@ -46,18 +47,26 @@ app.route({
 app.route({
     view: "bills-main",
     onReady: function() {
+        checkSession();
         scrollAutomatic();
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         restoreStyles();
+        loadCategories();
         loadBills();
         handleBills();
+        setTimeout(()=>{
+            deleteBills();
+            payBills();
+        }, 1000)
+        
     }
 });
 
 app.route({
     view: "profile-main",
     onReady: function() {
+        checkSession();
         scrollAutomatic();
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
@@ -70,7 +79,9 @@ app.route({
     onReady: function() {
         // run login view specific scripts
         adaptLoginStyles();
+
         UserService.init();
+        
         // disabling scroll again
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';

@@ -174,6 +174,49 @@ Flight::route('PUT /bills/@id', function($id) {
 
 
 /**
+ * @OA\Patch(
+ *      path="/bills/{id}",
+ *      tags={"Bills"},
+ *      summary="Partially update an existing bill (e.g., mark as paid)",
+ *      @OA\Parameter(
+ *          name="id",
+ *          in="path",
+ *          required=true,
+ *          @OA\Schema(type="integer", example=3)
+ *      ),
+ *      @OA\RequestBody(
+ *          @OA\JsonContent(
+ *              @OA\Property(property="amount_paid", type="number", example=75.50),
+ *              @OA\Property(property="payment_method", type="string", example="card"),
+ *              @OA\Property(property="status", type="string", example="paid")
+ *          )
+ *      ),
+ *      @OA\Response(response=200, description="Bill updated successfully"),
+ *      @OA\Response(response=403, description="Forbidden"),
+ *      @OA\Response(response=404, description="Bill not found")
+ * )
+ */
+
+Flight::route('PATCH /bills/@id', function($id) {
+    $data = Flight::request()->data->getData();
+
+    $bill = Flight::bill_service()->get_by_id($id);
+    if (!$bill) {
+        Flight::halt(404, "Bill not found");
+    }
+
+    $user = Flight::get('user');
+
+    if ($user->id != $bill['user_id']) {
+        Flight::halt(403, "Forbidden");
+    }
+
+    $result = Flight::bill_service()->edit($data, $id);
+    Flight::json(['success' => true]);
+});
+
+
+/**
  * @OA\Delete(
  *      path="/bills/{id}",
  *      tags={"Bills"},
@@ -184,7 +227,18 @@ Flight::route('PUT /bills/@id', function($id) {
  */
 
 Flight::route('DELETE /bills/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+
+    $bill = Flight::bill_service()->get_by_id($id);
+    if (!$bill) {
+        Flight::halt(404, "Bill not found");
+    }
+
+    $user = Flight::get('user');
+
+    if ($user->id != $bill['user_id']) {
+        Flight::halt(403, "Forbidden");
+    }
+
     $result = Flight::bill_service()->delete($id);
 
     Flight::json(['success' => $result !== null]);
