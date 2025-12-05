@@ -118,6 +118,48 @@ Flight::route('PUT /users/@id', function($id) {
     }
 });
 
+/**
+ * @OA\Patch(
+ *     path="/users/{id}",
+ *     tags={"Users"},
+ *     summary="Partially update an existing user",
+ *     description="Allows an admin or the user themselves to update selected user fields.",
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         @OA\Schema(type="integer", example=5)
+ *     ),
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(
+ *             @OA\Property(property="name", type="string", example="New Name"),
+ *             @OA\Property(property="email", type="string", example="newemail@example.com"),
+ *             @OA\Property(property="phone", type="string", example="+38761123456")
+ *         )
+ *     ),
+ *     @OA\Response(response=200, description="User updated successfully"),
+ *     @OA\Response(response=404, description="User not found or update failed"),
+ *     @OA\Response(response=403, description="Forbidden: not allowed")
+ * )
+ */
+
+
+Flight::route('PATCH /users/@id', function($id) {
+
+    Flight::auth_middleware()->allowAdminOrSelf($id);
+
+    $data = Flight::request()->data->getData();
+
+    $result = Flight::user_service()->update($data, $id);
+
+    if ($result !== null) {
+        Flight::json(['success' => true]);
+    } else {
+        Flight::json(['error' => 'User not found or update failed'], 404);
+    }
+});
+
 
 /**
  * @OA\Delete(

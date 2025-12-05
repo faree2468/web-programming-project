@@ -64,5 +64,29 @@ var UserService = {
     window.location.hash = "login-main";
   },
 
+
+  editUser: function(id, userData) {
+
+    if(Object.keys(userData).length === 0) {
+      toastr.error("Empty/Unfinished fields");
+      return;
+    }
+
+    if(userData.password && userData.confirm_password && userData.password != userData.confirm_password) {
+      toastr.error("Passwords do not match");
+      return;
+    }
+
+    
+
+    delete userData.confirm_password;
+
+    RestClient.patch('users/' + id, userData, function(_){
+      toastr.success("User updated successfully");
+    }, function(response) {
+      toastr.error(response);
+    })
+  }
+
   
 };

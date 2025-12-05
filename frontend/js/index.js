@@ -4,6 +4,7 @@ import { adaptLoginStyles, logoutFunc, checkSession } from './login.js';
 import { adaptHeroStyles } from './hero.js';
 import { adaptAdminStyles, handleSearch } from './admin.js';
 import { payBills, deleteBills, handleBills, loadBills, loadCategories } from './bills.js';
+import { editProfileFunction } from './profile.js';
 
 // Restoring styles for elements
 const navigation = document.getElementById('nav');
@@ -71,6 +72,7 @@ app.route({
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         restoreStyles();
+        editProfileFunction();
     }
 });
 
