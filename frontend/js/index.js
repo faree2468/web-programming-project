@@ -1,10 +1,11 @@
-import { addCharts, personalize } from './home.js';
+import { personalize, setupHomeFilters } from './home.js';
 import { adaptStyles, register } from './register.js';
 import { adaptLoginStyles, logoutFunc, checkSession } from './login.js';
 import { adaptHeroStyles } from './hero.js';
 import { adaptAdminStyles, handleSearch } from './admin.js';
 import { payBills, deleteBills, handleBills, loadBills, loadCategories } from './bills.js';
 import { editProfileFunction } from './profile.js';
+import { loadPayments } from './payments.js';
 
 // Restoring styles for elements
 const navigation = document.getElementById('nav');
@@ -37,9 +38,9 @@ app.route({
         scrollAutomatic();
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        addCharts();
         restoreStyles();
         personalize();
+        setupHomeFilters();
         logoutFunc();
         
     }
@@ -60,6 +61,7 @@ app.route({
             deleteBills();
             payBills();
         }, 1000)
+        logoutFunc();
         
     }
 });
@@ -73,6 +75,20 @@ app.route({
         document.body.style.overflow = '';
         restoreStyles();
         editProfileFunction();
+        logoutFunc();
+    }
+});
+
+app.route({
+    view: "payments-main",
+    onReady: function() {
+        checkSession();
+        scrollAutomatic();
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        restoreStyles();
+        loadPayments();
+        logoutFunc();
     }
 });
 

@@ -151,6 +151,10 @@ Flight::route('PATCH /users/@id', function($id) {
 
     $data = Flight::request()->data->getData();
 
+    if($data["password"]) {
+        $data["password"] = password_hash($data["password"], PASSWORD_BCRYPT);
+    }
+
     $result = Flight::user_service()->update($data, $id);
 
     if ($result !== null) {

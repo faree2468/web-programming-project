@@ -1,6 +1,10 @@
 <div id="bills-main">
     <div class="bills-form">
-        <h2>Add a Bill</h2>
+        <div style="display: flex; justify-content: space-between;">
+            <h2>Add a Bill</h2>
+            <h3 id="viewPayments" onclick="window.location.hash=`payments-main`">View payments</h3>
+        </div>
+        
         <form id="billForm">
             <label for="billName">Bill Name</label>
             <input type="text" id="billName" name="billName" required>

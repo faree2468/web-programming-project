@@ -91,7 +91,7 @@ export function handleBills() {
                 <td>${billData.name}</td>
                 <td>${billData.category_id}</td>
                 <td>${billData.due_date}</td>
-                <td style="color: red">0</td>
+                <td style="color: red">Unpaid</td>
                 <td>
                     <button class="payBtn"><i class="fa-solid fa-dollar-sign"></i></button>
                     <button class="deleteBtn"><i class="fa-solid fa-trash"></i></button>
@@ -193,4 +193,3 @@ export function payBills() {
         });
     });
 }
-
