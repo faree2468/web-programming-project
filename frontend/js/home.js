@@ -43,6 +43,7 @@ export function setupHomeFilters() {
 
     
     getPaidBills(yearSelect.value, monthSelect.value).then((paymentArr)=>{
+        leaderboard.innerHTML = ``;
         let paidSum = paymentArr.reduce((acc, val)=>acc+val, 0);
 
         let ctgNames = []
@@ -72,14 +73,28 @@ export function setupHomeFilters() {
     
     homeDateBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        leaderboard.innerHTML = ``;
         getPaidBills(yearSelect.value, monthSelect.value).then((paymentArr)=>{
             let paidSum = paymentArr.reduce((acc, val)=>acc+val, 0);
+
+            let ctgNames = []
+            let ctgTotalSpent = []
 
             paidText.textContent = paidSum;
             incomeText.textContent = localStorage.getItem('user_income') ? localStorage.getItem('user_income') : 0;
             expenseText.textContent = paidSum;
             
-            addCharts(paidSum);
+            getTopSpendsByCtg().then((topSpends)=>{
+        
+                for(let spend of topSpends) {
+                    leaderboard.innerHTML += `<div class="row"><span>${spend.category_name}</span><span>${spend.total_spent}</span></div>`
+                    ctgNames.push(spend.category_name);
+                    ctgTotalSpent.push(spend.total_spent);
+                }
+                
+                addCharts(paidSum, ctgNames, ctgTotalSpent);
+
+            });
         });
     });
 }
@@ -206,5 +221,21 @@ export function personalize() {
         nameTitle.textContent = addToString;
     }
 }
+
+export function checkAdmin() {
+    let nav = document.querySelector('.main-nav-subsection');
+    let token = localStorage.getItem('user_token');
+    let parsedToken = Utils.parseJwt(token);
+
+    
+    if (parsedToken.user.role == Constants.ADMIN_ROLE) {
+
+        
+        if (!nav.querySelector('a[href="#admin-main"]')) {
+            nav.insertAdjacentHTML('afterbegin', `<a href="#admin-main">Admin</a>`);
+        }
+    }
+}
+
 
 

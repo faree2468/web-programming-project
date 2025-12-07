@@ -35,4 +35,14 @@ class UserService extends BaseService
     public function get_all_users() {
         return $this->get_all();
     }
+
+    public function count_users() {
+        $result = $this->dao->count_users();
+        return $result[0]['total'];
+    }
+
+    public function get_by_name($name) {
+        $result = $this->dao->get_by_name($name);
+        return $result;
+    }
 }

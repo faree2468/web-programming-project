@@ -84,9 +84,37 @@ var UserService = {
     RestClient.patch('users/' + id, userData, function(_){
       toastr.success("User updated successfully");
     }, function(response) {
+      toastr.error(response.responseText);
+    })
+  },
+
+  // gets user count
+  getUsers: function() {
+    return new Promise((resolve, reject)=>{
+      RestClient.get(
+        'countusers',
+        (response)=>resolve(response),
+        (error)=>reject(error)
+      )
+    })
+  },
+
+  getUsersByName: function(name) {
+    return new Promise((resolve, reject)=>{
+      RestClient.get(
+        'users/'+name,
+        (response)=>resolve(response),
+        (error)=>reject(error)
+      )
+    })
+  },
+
+  deleteUser: function(id) {
+    RestClient.delete('users/' + id, function(_){
+      toastr.success('User deleted');
+    }, function(response){
       toastr.error(response);
     })
   }
-
   
 };

@@ -55,16 +55,7 @@ export async function loadBills() {
     }
 }
 
-
-export function handleBills() {
-    const billForm = document.getElementById('billForm');
-    const billName = document.getElementById('billName');
-    const billCtg = document.getElementById('ctg');
-    const dueDate = document.getElementById('dueDate');
-    const billsTable = document.getElementById('billsTable');
-    const billsBody = document.getElementById('billsBody');
-
-    const categoryIds = {
+const categoryIds = {
         'housing' : 1,
         'transportation' : 2,
         'food' : 3,
@@ -73,12 +64,13 @@ export function handleBills() {
         'medical/healthcare' : 6
     }
 
-    
-    
+function addBill(e) {
 
-    billForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const billData = {
+    const billCtg = document.getElementById('ctg');
+
+    e.preventDefault();
+
+    const billData = {
             id: 0,
             name: billName.value,
             category_id: categoryIds[billCtg.value],
@@ -100,9 +92,22 @@ export function handleBills() {
         `;
         billData.status = 0;
         BillService.createBill(billData);
-    });
+
+}
+
+export function handleBills() {
+    const billForm = document.getElementById('billForm');
+    const billName = document.getElementById('billName');
+    const billCtg = document.getElementById('ctg');
+    const dueDate = document.getElementById('dueDate');
+    const billsTable = document.getElementById('billsTable');
+    const billsBody = document.getElementById('billsBody');
 
 
+    billForm.removeEventListener('submit', addBill);
+
+    
+    billForm.addEventListener('submit', addBill);
 }
 
 // Load all categories

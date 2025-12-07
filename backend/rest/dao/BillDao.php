@@ -27,6 +27,11 @@ class BillDao extends BaseDao {
         );
     }
 
+    public function delete_all_by_user($user_id) {
+        return $this->query("DELETE FROM " . $this->table_name . " WHERE user_id = :user_id", ['user_id' => $user_id]);
+    }
+
+
     public function delete_bill($id) {
         $this->delete($id);
     }

@@ -241,7 +241,39 @@ Flight::route('DELETE /bills/@id', function($id) {
 
     $result = Flight::bill_service()->delete($id);
 
+    Flight::json(['success' => true], 200);
+});
+
+
+
+Flight::route('DELETE /bills/@id', function($id) {
+
+    $bill = Flight::bill_service()->get_by_id($id);
+    if (!$bill) {
+        Flight::halt(404, "Bill not found");
+    }
+
+    $user = Flight::get('user');
+
+    if ($user->id != $bill['user_id']) {
+        Flight::halt(403, "Forbidden");
+    }
+
+    $result = Flight::bill_service()->delete($id);
+
     Flight::json(['success' => $result !== null]);
+});
+
+
+Flight::route('DELETE /bills/user/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+
+    $deleted = Flight::bill_service()->delete_all_by_user($id);
+
+    Flight::json([
+        'success' => true,
+        'deleted_rows' => $deleted
+    ]);
 });
 
 

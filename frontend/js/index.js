@@ -1,4 +1,4 @@
-import { personalize, setupHomeFilters } from './home.js';
+import { personalize, setupHomeFilters, checkAdmin } from './home.js';
 import { adaptStyles, register } from './register.js';
 import { adaptLoginStyles, logoutFunc, checkSession } from './login.js';
 import { adaptHeroStyles } from './hero.js';
@@ -35,6 +35,7 @@ app.route({
     view: "home-main",
     onReady: function() {
         checkSession();
+        checkAdmin();
         scrollAutomatic();
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';

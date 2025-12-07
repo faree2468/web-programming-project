@@ -17,8 +17,11 @@
             <input type="text" id="search-username" placeholder="Enter username" required>
             <button type="submit">Search</button>
         </form>
+        <div id="user-no" style="color: red; display: none">User does not exist</div>
         <div id="user-result" style="display:none;">
             <p><strong>Username:</strong> <span id="result-username"></span></p>
+            <p><strong>Role:</strong> <span id="result-role"></span></p>
+            <p><strong>Email:</strong> <span id="result-email"></span></p>
             <button id="delete-account-btn">Delete Account</button>
             <button id="remove-bills-btn">Remove Bills</button>
         </div>

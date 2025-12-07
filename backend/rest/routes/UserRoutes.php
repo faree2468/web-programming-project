@@ -16,6 +16,10 @@ Flight::route("GET /users", function() {
     Flight::json(Flight::user_service()->get_all_users());
 });
 
+Flight::route('GET /users/@name:[a-zA-Z]+', function($name){
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    Flight::json(Flight::user_service()->get_by_name($name));
+});
 
 /**
  * @OA\Get(
@@ -49,6 +53,15 @@ Flight::route('GET /users/@id', function($id) {
     } else {
         Flight::json(['error' => 'User not found'], 404);
     }
+});
+
+
+
+
+Flight::route('GET /countusers', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    Flight::json(Flight::user_service()->count_users());
+    
 });
 
 
@@ -145,13 +158,13 @@ Flight::route('PUT /users/@id', function($id) {
  */
 
 
-Flight::route('PATCH /users/@id', function($id) {
+Flight::route('PATCH /users/@id:[0-9]+', function($id) {
 
     Flight::auth_middleware()->allowAdminOrSelf($id);
 
     $data = Flight::request()->data->getData();
 
-    if($data["password"]) {
+    if (isset($data["password"]) && !empty($data["password"])) {
         $data["password"] = password_hash($data["password"], PASSWORD_BCRYPT);
     }
 

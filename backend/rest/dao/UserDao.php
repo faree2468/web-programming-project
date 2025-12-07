@@ -13,6 +13,14 @@ class UserDao extends BaseDao {
         return $this->query_unique('SELECT * FROM ' . $this->table_name . ' WHERE email=:email', ['email' => $email]);
     }
 
+    public function count_users() {
+        return $this->query('SELECT COUNT(id) AS total FROM ' . $this->table_name, []);
+    }
+
+    public function get_by_name($name) {
+        return $this->query('SELECT * FROM ' . $this->table_name . ' WHERE name=:name', ['name'=>$name]);
+    }
+
     public function add_user($params) {
         $this->add($params);
     }

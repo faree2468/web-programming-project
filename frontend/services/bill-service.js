@@ -8,10 +8,11 @@ var BillService = {
     },
 
     deleteBill: function(id) {
-        RestClient.delete("bills/" + id, function(_){
+        let data={};
+        RestClient.delete("bills/" + id, data, function(_){
             toastr.success("Bill deleted");
         }, function(response) {
-            toastr.error(response)
+            toastr.error(response.responseText || "Request failed");
         })
     },
 
@@ -29,6 +30,12 @@ var BillService = {
     editBillStatus: function(id, billStatus) {
         RestClient.patch('bills/' + id, billStatus, function(_) {}, function(response){
             console.error(response);
+        })
+    },
+
+    deleteUserBills: function(id) {
+        RestClient.delete('bills/user/'+id, function(_){}, function(response){
+            console.log(response);
         })
     }
 }

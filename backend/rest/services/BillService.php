@@ -47,4 +47,10 @@ class BillService extends BaseService
     {
         return $this->dao->get_bills_for_month_year($month, $year, $user_id);
     }
+
+    public function delete_all_by_user($user_id) {
+        
+        return $this->dao->delete_all_by_user($user_id);
+    }
+
 }
