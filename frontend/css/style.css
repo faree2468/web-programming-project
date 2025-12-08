@@ -242,6 +242,10 @@ nav .main-nav-subsection a {
     box-shadow: 0 4px 16px rgba(34, 34, 59, 0.13);
 }
 
+#logout-btn {
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     #login-form-form {
         padding: 18px 6vw 16px 6vw;
@@ -583,7 +587,7 @@ nav .main-nav-subsection a {
 }
 
 .bills-form {
-    max-width: 500px;
+    max-width: 700px;
     margin: 0px auto;
     padding: 32px 24px;
     background: #f9f9fb;
@@ -712,6 +716,100 @@ nav .main-nav-subsection a {
     background: #f9fafb;
 }
 
+.payBtn i {
+    color: green;
+}
+
+.deleteBtn i {
+    color: red;
+}
+
+#viewPayments {
+    cursor: pointer;
+}
+
+#viewPayments:hover {
+    text-decoration: underline;
+}
+
+
+/* Payments CSS */
+
+#payments-main {
+    background-color: rgb(133, 128, 128);
+    height: 100vh;
+    padding-top: 35px;
+}
+
+.paymentsWrapper {
+    max-width: 700px;
+    margin: 0px auto;
+    padding: 32px 24px;
+    background: #f9f9fb;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    font-family: "Raleway", sans-serif;
+}
+
+#payments-main table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: block;
+    max-height: calc(5 * 44px + 44px);
+}
+
+#payments-main table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#payments-main table thead tr {
+    background: #e2e8f0;
+}
+
+#payments-main table tbody {
+    display: block;
+    max-height: calc(5 * 44px);
+    overflow-y: auto;
+}
+
+#payments-main table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#payments-main th, #payments-main td {
+    padding: 12px 10px;
+    text-align: left;
+}
+
+#payments-main th {
+    background: #e2e8f0;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#payments-main tr:nth-child(even) td {
+    background: #f1f5f9;
+}
+
+#payments-main .no-payments td {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    background: #f9fafb;
+}
+
 
 /* Profile CSS */
 #profile-main {
@@ -785,7 +883,6 @@ nav .main-nav-subsection a {
 #profile-main button[type="submit"]:hover {
     background: #005fa3;
 }
-
 
 /* Admin CSS */
 

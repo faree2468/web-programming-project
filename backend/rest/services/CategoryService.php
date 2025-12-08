@@ -13,8 +13,8 @@ class CategoryService extends BaseService
         return $this->dao->get_ctg_by_name($name);
     }
 
-    public function get_paid_bills_by_ctg() {
-        return $this->dao->get_paid_bills_by_ctg();
+    public function get_paid_bills_by_ctg($user_id) {
+        return $this->dao->get_paid_bills_by_ctg($user_id);
     }
 
 

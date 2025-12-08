@@ -17,7 +17,7 @@ class CategoryDao extends BaseDao {
         );
     }
 
-    public function get_paid_bills_by_ctg() {
+    public function get_paid_bills_by_ctg($user_id) {
         $query = '
             SELECT 
                 c.name AS category_name, 
@@ -25,11 +25,12 @@ class CategoryDao extends BaseDao {
             FROM payments p
             INNER JOIN bills b ON p.bill_id = b.id
             INNER JOIN ' . $this->table_name . ' c ON b.category_id = c.id
+            WHERE b.user_id = :user_id
             GROUP BY c.name
             ORDER BY total_spent DESC
         ';
 
-        return $this->query($query, []);
+        return $this->query($query, ['user_id' => $user_id]);
     }
     
 }

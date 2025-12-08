@@ -1,7 +1,111 @@
-export function addCharts() {
+// some functions to get data for the dashboard
+async function getPaidBills(year, month) {
+    try {
+        let token = localStorage.getItem('user_token');
+        let usr = Utils.parseJwt(token);
+        const payments = await PaymentService.getPaymentsFromUserForYearMonth(year, month, usr.user.id);
+        let paymentArr = [];
+        for(let payment of payments) {
+            paymentArr.push(payment.amount);
+        }
+        return paymentArr;
+
+    } catch(e) {
+        console.error(e);
+    }
+}
+
+async function getTopSpendsByCtg() {
+    try {
+        let token = localStorage.getItem('user_token');
+        let usr = Utils.parseJwt(token);
+        const topSpends = CategoryService.getTopSpendsForUser(usr.user.id);
+        return topSpends;
+    } catch(e) {
+        console.error(e);
+    }
+}
+
+export function setupHomeFilters() {
+    const monthSelect = document.getElementById('home-month');
+    const yearSelect  = document.getElementById('home-year');
+    const homeDateBtn = document.getElementById('home-date-confirm');
+
+    const paidText = document.getElementById('home-paid');
+    const incomeText = document.getElementById('home-income');
+    const expenseText = document.getElementById('home-expense');
+    const leaderboard = document.querySelector('.home-dashboard-topSpends');
+
+    if (!monthSelect || !yearSelect || !homeDateBtn) {
+        console.error("Elements not loaded yet");
+        return;
+    }
+
+    
+    getPaidBills(yearSelect.value, monthSelect.value).then((paymentArr)=>{
+        leaderboard.innerHTML = ``;
+        let paidSum = paymentArr.reduce((acc, val)=>acc+val, 0);
+
+        let ctgNames = []
+        let ctgTotalSpent = []
+
+        paidText.textContent = paidSum;
+        incomeText.textContent = localStorage.getItem('user_income') ? localStorage.getItem('user_income') : 0;
+        expenseText.textContent = paidSum;
+
+        getTopSpendsByCtg().then((topSpends)=>{
+        
+            for(let spend of topSpends) {
+                leaderboard.innerHTML += `<div class="row"><span>${spend.category_name}</span><span>${spend.total_spent}</span></div>`
+                ctgNames.push(spend.category_name);
+                ctgTotalSpent.push(spend.total_spent);
+            }
+            
+            addCharts(paidSum, ctgNames, ctgTotalSpent);
+
+        });
+
+        
+    });
+
+    
+
+    
+    homeDateBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        leaderboard.innerHTML = ``;
+        getPaidBills(yearSelect.value, monthSelect.value).then((paymentArr)=>{
+            let paidSum = paymentArr.reduce((acc, val)=>acc+val, 0);
+
+            let ctgNames = []
+            let ctgTotalSpent = []
+
+            paidText.textContent = paidSum;
+            incomeText.textContent = localStorage.getItem('user_income') ? localStorage.getItem('user_income') : 0;
+            expenseText.textContent = paidSum;
+            
+            getTopSpendsByCtg().then((topSpends)=>{
+        
+                for(let spend of topSpends) {
+                    leaderboard.innerHTML += `<div class="row"><span>${spend.category_name}</span><span>${spend.total_spent}</span></div>`
+                    ctgNames.push(spend.category_name);
+                    ctgTotalSpent.push(spend.total_spent);
+                }
+                
+                addCharts(paidSum, ctgNames, ctgTotalSpent);
+
+            });
+        });
+    });
+}
+
+
+function addCharts(paidSum=0, labels=[], labelsData=[]) {
     const billsCtx = document.getElementById('billsChart');
     const expenseCtx = document.getElementById('expenseIncomeChart');
     const topSpendsCtx = document.getElementById('topSpendsChart');
+
+    labelsData = labelsData.map(Number);
 
     if (Chart.getChart(billsCtx)) Chart.getChart(billsCtx).destroy();
     if (Chart.getChart(expenseCtx)) Chart.getChart(expenseCtx).destroy();
@@ -10,13 +114,12 @@ export function addCharts() {
     new Chart(billsCtx, {
         type: 'doughnut',
         data: {
-        labels: ['Paid', 'Upcoming'],
+        labels: ['Paid'],
         datasets: [{
             label: 'Bills',
-            data: [1500, 900],
+            data: [paidSum],
             backgroundColor: [
                 'rgba(0, 247, 21, 1)',
-                'rgba(255, 217, 3, 1)'
             ]
         }]
         },
@@ -45,7 +148,7 @@ export function addCharts() {
         labels: ['Expense', 'Income'],
         datasets: [{
             label: 'Expense vs Income',
-            data: [1100, 900],
+            data: [paidSum, localStorage.getItem('user_income') ? localStorage.getItem('user_income') : 0],
             backgroundColor: [
                 'rgba(247, 8, 0, 1)',
                 'rgba(0, 247, 21, 1)'
@@ -74,13 +177,13 @@ export function addCharts() {
     new Chart(topSpendsCtx, {
         type: 'pie',
         data: {
-        labels: ['Housing', 'Utilities'], // this data will be dynamically added, labels, data
+        labels: labels,
         datasets: [{
             label: 'Top spends',
-            data: [1100, 900],
+            data: labelsData,
             backgroundColor: [
-                'rgba(0, 218, 247, 1)',
-                'rgba(45, 0, 247, 1)',
+                '#1abc9c', '#3498db', '#9b59b6', '#e74c3c', '#f1c40f',
+                '#2ecc71', '#34495e', '#e67e22', '#95a5a6'
 
             ]
         }]
@@ -106,3 +209,33 @@ export function addCharts() {
 
     
 }
+
+export function personalize() {
+    const nameTitle = document.getElementById("welcome-tag");
+    var token = localStorage.getItem('user_token');
+
+    if(token && token !== undefined) {
+        let parsedToken = Utils.parseJwt(token);
+        let addToString = nameTitle.textContent.slice(0, 9);
+        addToString += parsedToken.user["name"];
+        nameTitle.textContent = addToString;
+    }
+}
+
+export function checkAdmin() {
+    let nav = document.querySelector('.main-nav-subsection');
+    let token = localStorage.getItem('user_token');
+    let parsedToken = Utils.parseJwt(token);
+
+    
+    if (parsedToken.user.role == Constants.ADMIN_ROLE) {
+
+        
+        if (!nav.querySelector('a[href="#admin-main"]')) {
+            nav.insertAdjacentHTML('afterbegin', `<a href="#admin-main">Admin</a>`);
+        }
+    }
+}
+
+
+

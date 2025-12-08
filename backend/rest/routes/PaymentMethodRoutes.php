@@ -89,6 +89,7 @@ Flight::route('GET /payment_methods/name/@name', function($name) {
  */
 
 Flight::route('POST /payment_methods', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
 
     $result = Flight::payment_method_service()->add($data);
@@ -126,6 +127,7 @@ Flight::route('POST /payment_methods', function() {
  */
 
 Flight::route('PUT /payment_methods/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
 
     if (empty($data)) {
@@ -153,6 +155,7 @@ Flight::route('PUT /payment_methods/@id', function($id) {
  */
 
 Flight::route('DELETE /payment_methods/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $result = Flight::payment_method_service()->delete($id);
     Flight::json(['success' => $result !== null]);
 });

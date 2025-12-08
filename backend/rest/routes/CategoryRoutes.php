@@ -81,8 +81,9 @@ Flight::route('GET /categories/name/@name', function($name) {
  * )
  */
 
-Flight::route('GET /get_paid_bills_by_category', function() {
-    $data = Flight::category_service()->get_paid_bills_by_ctg();
+Flight::route('GET /get_paid_bills_by_category/@user_id', function($user_id) {
+    Flight::auth_middleware()->allowAdminOrSelf($user_id);
+    $data = Flight::category_service()->get_paid_bills_by_ctg($user_id);
     Flight::json($data);
 });
 
@@ -105,6 +106,7 @@ Flight::route('GET /get_paid_bills_by_category', function() {
  */
 
 Flight::route('POST /categories', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
 
     $result = Flight::category_service()->add($data);
@@ -142,6 +144,7 @@ Flight::route('POST /categories', function() {
  */
 
 Flight::route('PUT /categories/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
 
     $result = Flight::category_service()->update($data, $id);
@@ -166,6 +169,7 @@ Flight::route('PUT /categories/@id', function($id) {
  */
 
 Flight::route('DELETE /categories/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $result = Flight::category_service()->delete($id);
     Flight::json(['success' => $result !== null]);
 });

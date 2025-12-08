@@ -6,6 +6,8 @@
     <title>Bill tracker</title>
     <link rel="stylesheet" href="css/spapp.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
     <nav id="nav">
@@ -14,7 +16,7 @@
             <a href="#home-main">Home</a>
             <a href="#bills-main">Bills</a>
             <a href="#profile-main">Profile</a>
-            <a href="#login-main">Logout</a>
+            <a id="logout-btn">Logout</a>
         </div>
     </nav>
     <main id="spapp" class="pageContent" role="main">
@@ -26,6 +28,8 @@
         </section>
         <section id="login-main" data-load="login.html">
         </section>
+        <section id="payments-main" data-load="payments.html">
+        </section>
         <section id="register-main" data-load="register.html">
         </section>
         <section id="admin-main" data-load="admin.html">
@@ -34,7 +38,18 @@
         </section>
     </main>
     <script src="./js/jQuery-3.7.1.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.3/jquery.validate.min.js"></script> -->
+    <script src="./js/jQuery.validate.min.js"></script>
     <script src="./js/jQuery.spapp.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="./utils/constants.js"></script>
+    <script src="./utils/utils.js"></script>
+    <script src="./utils/rest-client.js"></script>
+    <script src="./services/user-service.js"></script>
+    <script src="./services/category-service.js"></script>
+    <script src="./services/bill-service.js"></script>
+    <script src="./services/payment-service.js"></script>
+    <script src="./services/payment-method-service.js"></script>
     <script type="module" src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
