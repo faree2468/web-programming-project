@@ -34,7 +34,7 @@ CREATE TABLE `bills` (
   KEY `fk_category_id` (`category_id`),
   CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `bills` (
 
 LOCK TABLES `bills` WRITE;
 /*!40000 ALTER TABLE `bills` DISABLE KEYS */;
+INSERT INTO `bills` VALUES (16,'editedAuthorizedbill','2025-11-30',0,15,2),(17,'clientSideBill','2025-12-12',1,18,2),(18,'clientSideBill2','2025-12-13',1,18,4),(22,'clientSideBill3','2025-12-19',1,18,4),(24,'theadmin','2025-11-14',1,17,3),(28,'dfdf','2025-12-23',1,17,1),(29,'pills','2025-12-01',1,17,6),(40,'dfdfdfdf','2025-12-19',1,17,4);
 /*!40000 ALTER TABLE `bills` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +82,7 @@ CREATE TABLE `payment_methods` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +113,7 @@ CREATE TABLE `payments` (
   KEY `fk_payment_method_bill` (`payment_method_id`),
   CONSTRAINT `fk_payment_method_bill` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_payments_bill` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,6 +122,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
+INSERT INTO `payments` VALUES (11,200,'2025-11-26',16,1),(12,400,'2025-12-05',17,1),(15,600,'2025-12-05',22,1),(16,500,'2025-12-05',18,3),(17,700,'2025-12-05',18,7),(18,4,'2025-12-05',18,3),(19,5,'2025-12-05',18,7),(20,6,'2025-12-07',24,7),(22,5555,'2025-12-07',28,3),(23,60,'2025-12-07',29,1),(26,1000,'2025-12-08',40,7);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,8 +137,11 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `role` varchar(100) NOT NULL,
+  `isOnline` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +150,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'test@test.com','mr.beast'),(3,'test@test.com','mr.test');
+INSERT INTO `users` VALUES (14,'33333333@gmail.com.com','fd','$2y$12$5XrM5bPQ5IFqju3xp75IoOyHAPAmdoU9TyZZbCtUsp6t1jXWwLSTK','user',0),(15,'newuser@gmail.com','newuser','$2y$12$EreK3DzI412a7igsvrr0h.H5/.BcY2usd.8ovbhLrBXSG0MLAl4oy','user',0),(17,'realadmin@gmail.com','adminchanged','$2y$12$xG1cn/aY7k9dU2.cH0vkDuxCaEAsbyk8.WePG2OmxEB5yqtnI4k6C','admin',1),(18,'qwerty@q.com','winger','$2y$12$9btuDNsB4tlEVUV9/RRBdecB9Wc1Iuei/4fhtCWbBVDdktwWTKVa.','user',0),(19,'fromClientSide2@gmail.com','fromClientSide2','$2y$12$gA2OmyZzUIXUN.AIA48CqOUePngayG8EJzdMlke1CO56hhWSO3t8.','user',0),(20,'test@testing.com','john','$2y$12$OZ3vkMn5ijVbuNwSY3BsSeRujPn9zmUm8Hqh3Efzoo4yTFPgFJgyK','user',0),(21,'server@server.server','ServerServer','$2y$12$p2sh9fjA/KqD6EGwvikusuUpbmyc/UWF9swO8jXr1b7B32Z0lKuuO','user',0),(24,'t1@t1.com','johny','nesto','user',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-25 11:03:46
+-- Dump completed on 2025-12-08 13:19:57
