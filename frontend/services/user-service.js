@@ -51,6 +51,11 @@ var UserService = {
       success: function (result) {
         console.log(result);
         localStorage.setItem("user_token", result.data.token);
+        let token = localStorage.getItem('user_token');
+        let usr = Utils.parseJwt(token);
+        RestClient.patch('users/' + usr.user.id, {'isOnline' : 1}, function(_){}, function(response){
+          console.log(response);
+        })
         window.location.hash = "home-main";
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -60,6 +65,11 @@ var UserService = {
   },
 
   logout: function () {
+    let token = localStorage.getItem('user_token');
+    let usr = Utils.parseJwt(token);
+    RestClient.patch('users/' + usr.user.id, {'isOnline' : 0}, function(_){}, function(response){
+      console.log(response);
+    })
     localStorage.clear();
     window.location.hash = "login-main";
   },
@@ -93,6 +103,17 @@ var UserService = {
     return new Promise((resolve, reject)=>{
       RestClient.get(
         'countusers',
+        (response)=>resolve(response),
+        (error)=>reject(error)
+      )
+    })
+  },
+
+  // gets online users count
+  getUsersCountOnline: function() {
+    return new Promise((resolve, reject)=>{
+      RestClient.get(
+        'onlineusercount',
         (response)=>resolve(response),
         (error)=>reject(error)
       )

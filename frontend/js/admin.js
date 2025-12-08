@@ -5,7 +5,10 @@ export function adaptAdminStyles() {
 }
 
 export function handleSearch() {
-    document.getElementById('users-online').textContent = 1;
+    UserService.getUsersCountOnline().then((cnt)=>{
+        document.getElementById('users-online').textContent = cnt;
+    })
+    
     UserService.getUsers().then((cnt)=>{
         document.getElementById('user-count').textContent = cnt;
     });

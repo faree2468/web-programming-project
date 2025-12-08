@@ -17,6 +17,10 @@ class UserDao extends BaseDao {
         return $this->query('SELECT COUNT(id) AS total FROM ' . $this->table_name, []);
     }
 
+    public function count_online_users() {
+        return $this->query('SELECT COUNT(*) AS online_total FROM ' . $this->table_name . ' WHERE isOnline = 1', []);
+    }
+
     public function get_by_name($name) {
         return $this->query('SELECT * FROM ' . $this->table_name . ' WHERE name=:name', ['name'=>$name]);
     }

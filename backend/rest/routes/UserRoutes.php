@@ -64,6 +64,12 @@ Flight::route('GET /countusers', function() {
     
 });
 
+Flight::route('GET /onlineusercount', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    Flight::json(Flight::user_service()->count_online_users());
+    
+});
+
 
 /**
  * @OA\Post(

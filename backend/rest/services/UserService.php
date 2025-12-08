@@ -41,6 +41,11 @@ class UserService extends BaseService
         return $result[0]['total'];
     }
 
+    public function count_online_users() {
+        $result = $this->dao->count_online_users();
+        return $result[0]['online_total'];
+    }
+
     public function get_by_name($name) {
         $result = $this->dao->get_by_name($name);
         return $result;
